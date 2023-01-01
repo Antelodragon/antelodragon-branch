@@ -1,71 +1,68 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="Antelodragon_badge.png" type="image/x-icon">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
 </head>
-<title>登录</title>
 
 <body>
-    <div align="center">
-        <input type="number" placeholder="请输入账号" id="username" name="usernam">
-        <input type="password" placeholder="请输入密码" id="pwd"><br>
-        <input type="submit" value="登录" id="enter" onclick="my()">
-        <button onclick="my()">登录？</button>
-        <input type="reset" value="紧急入口" id="re">
+    <div style="border:2px solid #2EF4FF;position: absolute;left:5%;top:20px;width: 90%;height:220px;border-radius:10px 10px 10px 10px;">
+        <span style="position: absolute;left:10%;top: 10px;width: 80%;height:auto;font-size: 15px;">用户名:</span>
+        <input type="text" placeholder="请输入用户名..." id="username" style="position: absolute;left:10%;top: 30px;width: 80%;height: 30px;font-size: 30px;">
+        <span style="position: absolute;left:10%;top: 80px;width: 80%;height:auto;font-size: 15px;">密码:</span>
+        <input type="password" placeholder="请输入密码..." id="passwd" style="position: absolute;left:10%;top: 100px;width: 80%;height: 30px;font-size: 30px;"><br>
+        <input type="button" value="登录" onclick="login()" style="position: absolute;left:10%;top:150px;width: 60%;height:40px;font-size: 20px;">
+        <input type="button" id="btnClear" value="清除" onclick="doClear()" style="position: absolute;left:72%;top: 150px;width: 20%;height: 40px;font-size: 20px;"/>
     </div>
-<script>
-function myFunction() {
-   if(document.getElementById("username").value=="1")
-   {
-    if(document.getElementById("pwd").value=="123")
-    {
-    alert("yes");
-    } 
-    else
-    {
-      alert("no");
-    }
-   }
-   else
-  {
-    alert("no");
-  }
+    <script type="text/javascript">
+        let accountAll = [{ // 存储账户json数据的数组
+                username: 123,
+                passwd: 'qwe'
+            },
+            {
+                username: 456,
+                passwd: 'asd'
+            },
+            {
+                username: 789,
+                passwd: 'zxc'
+            }
+        ]
 
-
-}
-</script>
-    <script>
-        function my() {
-
-
-            if (document.getElementById("username").value == "1") {
-                document.getElementById("enter").addEventListener("click", function() {
-                    document.location = 'page.html'
-                });
-            } <!--else {
-                alert("<font style="
-                    color = "red"
-                    ">用户名错误！</font>")
-            }-->
-    </script>
-    <style>
-        .backg {
-            background: url("gray.jpg");
-            background-size: cover;
-
-            position: fixed;
-            bottom: 0;
-            left: 0px;
-            width: 100%;
-            text-align: center;
+        function login() { //登陆判断
+            let username = document.getElementById('username').value;
+            let passwd = document.getElementById('passwd').value;
+            let account = accountAll.filter(function(e) {
+                return e.username == username
+            })[0]; // 筛选账号返回数组，不存在则返回空数组
+            if (!account) {
+                alert('账户不存在');
+            } else {
+                if (account.username == username && account.passwd == passwd) {
+                    alert('登陆成功');
+                    document.location='page.html'
+                } else {
+                    alert('密码错误');
+                }
+            }
         }
-    </style>
-        <div class="backg">
-            <h4>©2022 By Antelodragon<br><a href="mailto: antelodargon@mail.ru" style="text-decoration: none;">antelodragon@mail.ru</a></h4>
-        </div>
+
+        function doClear() { //获取页面所有的input框，是text和password框，内容=空串
+            let inputs = document.getElementsByTagName("input");
+            for (let i = 0; i < inputs.length; i++) {
+                if (inputs[i].type == 'text' || inputs[i].type == 'password') {
+                    inputs[i].value = '';
+                }
+            }
+        }
+        //给清除按钮增加onclick事件
+        let btnClear = document.getElementById('btnClear');
+        btnClear.addEventListener('click', function() {
+            doClear();
+        });
+    </script>
 </body>
 
 </html>
