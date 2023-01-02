@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="Antelodragon_badge.png" type="image/x-icon">
+    <link rel="shortcut icon" href="Antelodragon_badge_zf1080.png" type="image/x-icon">
 </head>
 <title>欢迎来到羚龙(Antelodragon)</title>
 
@@ -43,6 +43,7 @@
                 document.getElementById("tishi").innerHTML = "<br><font color='#00FF3D'>两次密码相同，允许注册</font>";
                 document.getElementById("submit").disabled = false;
                 document.getElementById("submit").addEventListener("click", function() {
+                    alert('注册成功。')
                     document.location = 'page.html'
                 });
             } else {
